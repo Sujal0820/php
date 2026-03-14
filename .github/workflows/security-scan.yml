@@ -1,0 +1,26 @@
+name: Docker Security Scan
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: |
+          docker build -t github github-actions-learning:scan .
+
+      - name: Run Trivy Vulnerability Scanner
+        uses: aquasecurity/trivy-actions@0.20.0
+        with:
+          image-ref: github-actions-learning:scan
+          format: table
+          exit-code: 1
+          severity: CRITICAL,HIGH

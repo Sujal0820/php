@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: github-actions-app
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: github-actions-app
+
+  template:
+    metadata:
+      labels:
+        app: github-actions-app
+
+    spec:
+      containers:
+        - name: app
+          image: DOCKER_USERNAME/github-actions-learning:latest
+          ports:
+            - containerPort: 5000

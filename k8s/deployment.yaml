@@ -19,6 +19,6 @@ spec:
     spec:
       containers:
         - name: app
-          image: DOCKER_USERNAME/github-actions-learning:latest
+          image: sujal1250/github-actions-learning:latest
           ports:
             - containerPort: 5000
